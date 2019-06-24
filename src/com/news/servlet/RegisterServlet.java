@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
 		String userpassword = request.getParameter("userpassword");
 		String userpassword1 = request.getParameter("userpassword1");
 		String usersex = request.getParameter("sex");
-		String select = "用户";
+		String select = "普通用户";
 		if (username.equals("")) {
 			request.setAttribute("error_name", "用户名不能为空！");
 			doGet(request, response);

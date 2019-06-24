@@ -79,7 +79,7 @@ public class AdminNewsServlet extends HttpServlet {
 		}else{
 			valid = true;
 		}  
-		 System.out.println("从客户端接收到参数：" + "标题：" + newstitle + "内容：" + newscontent + "类型：" + typeid +"图片：" + newsimg + "UserID：" + userid );
+		 System.out.println("从客户端接收到参数：" + "标题：" + newstitle + "内容：" + newscontent + "类型："  + "UserID：" + userid );
 		 NewsDao newsDao  = new NewsDao();
 	     boolean state = newsDao.addNews(userid, typeid, newscontent,newstitle, newsimg);
 	     if (state) {

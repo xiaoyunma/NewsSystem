@@ -174,7 +174,7 @@
 
 														<div class="dz-default dz-message">
 
-															<input type="file" name="newsimg">
+															<input type="text" name="newsimg">
 
 														</div>
 

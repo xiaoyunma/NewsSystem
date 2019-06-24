@@ -25,23 +25,23 @@ public class NewsDao {
 
 	public boolean addNews(Integer userid, Integer typeid, String newscontent, String title, String newsimg) {
 		boolean state = false;
-		File file = new File("E:/eclipse-workspace/NewsSystem/WebContent/img/" + newsimg);
+		//File file = new File("E:/eclipse-workspace/NewsSystem/WebContent/img/" + newsimg);
 		Connection conn = ConnectHelper.openConnection();
 
 		try {
-			FileInputStream fin = new FileInputStream(file);
- 			ByteBuffer nbf  = ByteBuffer.allocate((int) file.length());
-			byte[] array  = new byte[1024];
-			int  offset = 0, length = 0;
-			while((length = fin.read(array)) > 0) {
-				if (length != 1024) 
-					nbf.put(array,0,length);
-				else
-					nbf.put(array);
-				offset += length;
-			}
+//			FileInputStream fin = new FileInputStream(file);
+// 			ByteBuffer nbf  = ByteBuffer.allocate((int) file.length());
+//			byte[] array  = new byte[1024];
+//			int  offset = 0, length = 0;
+//			while((length = fin.read(array)) > 0) {
+//				if (length != 1024) 
+//					nbf.put(array,0,length);
+//				else
+//					nbf.put(array);
+//				offset += length;
+//			}
 			
-			byte[] content = nbf.array();
+			//byte[] content = nbf.array();
  			PreparedStatement stat = conn.prepareStatement(
 					"insert into news values (null,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			stat.setInt(1, userid);
@@ -49,7 +49,7 @@ public class NewsDao {
 			stat.setString(3, newscontent);
 			stat.setTimestamp(4, new Timestamp(new Date().getTime()));
 			stat.setString(5, title);
-			stat.setBytes(6, content);
+			stat.setString(6, newsimg);
 			int rows = stat.executeUpdate();
 			// 执行完sql语句之后 使用查询对象可以获取当前这条语句执行之后生成的主键数据
 			ResultSet rs = stat.getGeneratedKeys();
@@ -66,12 +66,8 @@ public class NewsDao {
 			} else {
 				state = false;
 			}
-			fin.close();
+			//fin.close();
 			System.out.println("图片记录已经加载");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch (IOException e) {
-			e.printStackTrace();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
